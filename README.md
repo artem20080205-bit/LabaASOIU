@@ -29,3 +29,15 @@ python lab1/functional.py 1 -5 4
 Отчет: [Word](lab1/report.docx), [PDF](lab1/report.pdf).
 
 Задание: https://github.com/ugapanyuk/BKIT_2022/wiki/lab_python_intro
+
+## Рубежные контроли и домашнее задание
+
+| Работа | Исходники и запуск | Отчет Word | Отчет PDF |
+|---|---|---|---|
+| РК-1, вариант 14В | [rk1](rk1) | [Word](rk1/report.docx) | [PDF](rk1/report.pdf) |
+| РК-2, рефакторинг 14В | [rk2](rk2) | [Word](rk2/report.docx) | [PDF](rk2/report.pdf) |
+| ДЗ, консольный список задач на Go | [dz](dz) | [Word](dz/report.docx) | [PDF](dz/report.pdf) |
+
+В каждой папке есть инструкция `README.md` и фактические результаты
+выполнения `execution.txt`. Код РК запускается на Python без сторонних
+библиотек, проект ДЗ использует только стандартную библиотеку Go.

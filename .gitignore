@@ -1,2 +1,5 @@
 __pycache__/
 *.pyc
+*.exe
+dz/tasks.json
+dz/demo.json

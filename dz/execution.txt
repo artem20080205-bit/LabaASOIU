@@ -1,0 +1,63 @@
+> go version
+go version go1.27.3 windows/amd64
+
+> go test -v ./...
+=== RUN   TestPersistence
+--- PASS: TestPersistence (0.00s)
+=== RUN   TestInvalidCommandDoesNotChangeFile
+--- PASS: TestInvalidCommandDoesNotChangeFile (0.00s)
+=== RUN   TestCorruptFileIsPreserved
+--- PASS: TestCorruptFileIsPreserved (0.00s)
+=== RUN   TestEmptyList
+--- PASS: TestEmptyList (0.00s)
+PASS
+ok  	github.com/artem20080205-bit/LabaASOIU/dz	0.021s
+
+> go build -o tasker.exe .
+Сборка завершилась с кодом 0.
+
+> tasker.exe list
+Список задач пуст.
+
+> tasker.exe add "Изучить Go"
+Добавлена задача 1: Изучить Go
+
+> tasker.exe add "Подготовить домашнее задание"
+Добавлена задача 2: Подготовить домашнее задание
+
+> tasker.exe list
+1. [ ] Изучить Go
+2. [ ] Подготовить домашнее задание
+
+> tasker.exe done 1
+Задача 1 выполнена.
+
+> tasker.exe list
+1. [x] Изучить Go
+2. [ ] Подготовить домашнее задание
+
+> tasker.exe stats
+Всего: 2; выполнено: 1; осталось: 1
+
+> tasker.exe done 99
+Ошибка: задача 99 не найдена
+
+> tasker.exe add " "
+Ошибка: укажите непустой текст задачи
+
+> tasker.exe done abc
+Ошибка: id должен быть положительным целым числом
+
+> Содержимое tasks.json
+[
+  {
+    "id": 1,
+    "title": "Изучить Go",
+    "done": true
+  },
+  {
+    "id": 2,
+    "title": "Подготовить домашнее задание",
+    "done": false
+  }
+]
