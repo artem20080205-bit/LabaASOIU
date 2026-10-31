@@ -1,4 +1,4 @@
-"""РК-1. Вариант 14В: CD-диск и библиотека CD-дисков."""
+"""РК-1. Вариант 14А: CD-диск и библиотека CD-дисков."""
 
 
 class CD:
@@ -43,45 +43,47 @@ def main():
         CDLibrary(5, 1),
     ]
 
-    # В1. Связь один-ко-многим, название диска начинается на А.
-    result_1 = [
-        (cd.title, library.name)
-        for cd in cds
-        for library in libraries
-        if cd.library_id == library.id and cd.title.startswith("А")
-    ]
+    # А1. Все связи один-ко-многим, сортировка по библиотекам.
+    result_1 = sorted(
+        [(cd.title, library.name)
+         for cd in cds
+         for library in libraries
+         if cd.library_id == library.id],
+        key=lambda row: row[1],
+    )
 
-    # В2. Минимальная длительность в каждой непустой библиотеке.
+    # А2. Суммарная длительность дисков каждой библиотеки.
     result_2 = []
     for library in libraries:
         durations = [
             cd.duration for cd in cds if cd.library_id == library.id
         ]
-        if durations:
-            result_2.append((library.name, min(durations)))
-    result_2 = sorted(result_2, key=lambda row: row[1])
+        result_2.append((library.name, sum(durations)))
+    result_2 = sorted(result_2, key=lambda row: row[1], reverse=True)
 
-    # В3. Связь многие-ко-многим, сортировка по названиям дисков.
-    result_3 = sorted(
-        [
-            (cd.title, library.name)
-            for link in links
-            for cd in cds
-            for library in libraries
-            if link.cd_id == cd.id and link.library_id == library.id
-        ],
-        key=lambda row: (row[0], row[1]),
-    )
+    # А3. Библиотеки со словом "библиотека" и их диски.
+    # Здесь используется только связь многие-ко-многим.
+    result_3 = {
+        library.name: [
+            cd.title for link in links for cd in cds
+            if link.library_id == library.id and link.cd_id == cd.id
+        ]
+        for library in libraries
+        if "библиотека" in library.name.lower()
+    }
 
     for title, rows in (
-        ("В1. Диски с названием на А и их библиотеки", result_1),
-        ("В2. Библиотеки по минимальной длительности, мин", result_2),
-        ("В3. Все связи с сортировкой по названиям дисков", result_3),
+        ("А1. Все диски с сортировкой по библиотекам", result_1),
+        ("А2. Библиотеки по суммарной длительности, мин", result_2),
     ):
         print(title)
         for first, second in rows:
             print(f"  {first} | {second}")
         print()
+
+    print('А3. Библиотеки со словом "библиотека" и их диски')
+    for library_name, titles in result_3.items():
+        print(f"  {library_name} | {'; '.join(titles)}")
 
 
 if __name__ == "__main__":

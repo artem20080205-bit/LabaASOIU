@@ -34,7 +34,7 @@ python lab1/functional.py 1 -5 4
 
 | Работа | Исходники и запуск | Отчет Word | Отчет PDF |
 |---|---|---|---|
-| РК-1, вариант 14В | [rk1](rk1) | [Word](rk1/report.docx) | [PDF](rk1/report.pdf) |
+| РК-1, вариант 14А | [rk1](rk1) | [Word](rk1/report.docx) | [PDF](rk1/report.pdf) |
 | РК-2, рефакторинг 14В | [rk2](rk2) | [Word](rk2/report.docx) | [PDF](rk2/report.pdf) |
 | ДЗ, консольный список задач на Go | [dz](dz) | [Word](dz/report.docx) | [PDF](dz/report.pdf) |
 
